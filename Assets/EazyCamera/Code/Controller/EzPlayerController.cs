@@ -9,6 +9,8 @@ public class EzPlayerController : MonoBehaviour
     [SerializeField] private EzCamera m_camera = null;
     [SerializeField] private EzMotor m_controlledPlayer = null;
     public float speed;
+    public GameObject Shot;
+    public Transform ShotSpawn;
     private Rigidbody rb;
 
     private void Start()
@@ -24,6 +26,11 @@ public class EzPlayerController : MonoBehaviour
         if (m_controlledPlayer != null && m_camera != null)
         {
             HandleInput();
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(Shot, ShotSpawn.position, ShotSpawn.rotation);
+
         }
     }
 
@@ -58,6 +65,7 @@ public class EzPlayerController : MonoBehaviour
 
     }
 
+    //Map keys to movement direction
     private void Movement()
     {
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
@@ -103,7 +111,8 @@ public class EzPlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.rotation = Quaternion.FromToRotation(Vector3.forward, Vector3.left);
+            rb.rotation = Quaternion.FromToRotation(Vector3.forward, new Vector3(0, -45, 0));
+            //rb.transform.rotation = new Vector3(0, -45, 0);
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
         {
@@ -151,7 +160,7 @@ public class EzPlayerController : MonoBehaviour
         Vector3 moveVector = m_camera.ConvertMoveInputToCameraSpace(horz, vert);
 
         // Move the Player
-        //m_controlledPlayer.MovePlayer(moveVector.x, moveVector.z, Input.GetKey(KeyCode.LeftShift));
+        m_controlledPlayer.MovePlayer(moveVector.x, moveVector.z, Input.GetKey(KeyCode.LeftShift));
 
     }
 }
