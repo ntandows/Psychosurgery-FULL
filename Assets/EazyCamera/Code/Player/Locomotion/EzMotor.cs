@@ -24,6 +24,7 @@ public class EzMotor : MonoBehaviour
     public void MovePlayer(float moveX, float moveZ, bool isRunning)
     {
         // Update the move Deltas
+
         m_moveVector.x = moveX;
         m_moveVector.z = moveZ;
         m_moveVector.Normalize();

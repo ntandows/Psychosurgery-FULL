@@ -9,8 +9,8 @@ public class EzPlayerController : MonoBehaviour
     [SerializeField] private EzCamera m_camera = null;
     [SerializeField] private EzMotor m_controlledPlayer = null;
     public float speed;
-    public GameObject Shot;
-    public Transform ShotSpawn;
+    public GameObject shot;
+    public GameObject shotSpawn;
     private Rigidbody rb;
 
     private void Start()
@@ -27,11 +27,7 @@ public class EzPlayerController : MonoBehaviour
         {
             HandleInput();
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            Instantiate(Shot, ShotSpawn.position, ShotSpawn.rotation);
 
-        }
     }
 
     private void SetUpControlledPlayer()
@@ -62,10 +58,13 @@ public class EzPlayerController : MonoBehaviour
     {
         Movement();
         Direction();
-
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Instantiate(shot, shotSpawn.transform.position, shotSpawn.transform.rotation);
+        }
     }
 
-    //Map keys to movement direction
+    //Map the buttons
     private void Movement()
     {
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
@@ -111,8 +110,7 @@ public class EzPlayerController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
-            rb.rotation = Quaternion.FromToRotation(Vector3.forward, new Vector3(0, -45, 0));
-            //rb.transform.rotation = new Vector3(0, -45, 0);
+            rb.rotation = Quaternion.FromToRotation(Vector3.forward, Vector3.left);
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.DownArrow))
         {
