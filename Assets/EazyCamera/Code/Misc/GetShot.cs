@@ -9,7 +9,7 @@ public class GetShot : MonoBehaviour
         if(other.CompareTag("Shot"))
         {
             Destroy(other.gameObject);
-            //Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
     }
 }

@@ -58,6 +58,11 @@ public class EzPlayerController : MonoBehaviour
     {
         Movement();
         Direction();
+        Shoot();
+    }
+
+    private void Shoot()
+    {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Instantiate(shot, shotSpawn.transform.position, shotSpawn.transform.rotation);
