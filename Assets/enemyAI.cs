@@ -26,21 +26,24 @@ public class enemyAI : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "1")
+        if (other.tag != "player")
         {
-            enemy.SetDestination(pos2.position);
-        }
-        if (other.tag == "2")
-        {
-            enemy.SetDestination(pos3.position);
-        }
-        if (other.tag == "3")
-        {
-            enemy.SetDestination(pos4.position);
-        }
-        if (other.tag == "4")
-        {
-            enemy.SetDestination(pos1.position);
+            if (other.tag == "1")
+            {
+                enemy.SetDestination(pos2.position);
+            }
+            if (other.tag == "2")
+            {
+                enemy.SetDestination(pos3.position);
+            }
+            if (other.tag == "3")
+            {
+                enemy.SetDestination(pos4.position);
+            }
+            if (other.tag == "4")
+            {
+                enemy.SetDestination(pos1.position);
+            }
         }
         
     }
