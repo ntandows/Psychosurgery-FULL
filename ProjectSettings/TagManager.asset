@@ -10,6 +10,7 @@ TagManager:
   - 2
   - 3
   - 4
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
