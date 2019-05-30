@@ -11,7 +11,6 @@ public class ShotController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //rb.velocity = new Vector3(0.0f, 0.0f, 1.0f * speed);
         rb.velocity = transform.forward * speed;
     }
 
