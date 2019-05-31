@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Shot
   - Enemy
+  - 1
+  - 2
+  - 3
+  - 4
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
