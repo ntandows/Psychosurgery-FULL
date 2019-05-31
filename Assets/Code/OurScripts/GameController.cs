@@ -7,12 +7,15 @@ public class GameController : MonoBehaviour
     private int numCheckpoints;
     private int numEnemies;
 
+
+
     /*
      * setter when checkpoint is reached
      */
     public void LessCheckpoint()
     {
         numCheckpoints--;
+        print(numCheckpoints);
     }
 
     /*
@@ -29,9 +32,8 @@ public class GameController : MonoBehaviour
     public void PrintDiagnostics()
     {
         print("PRINTING DIAGNOSTICS");
-        print("Initial numCheckpoints: " + numCheckpoints);
-        print("Initial numEnemies: " + numEnemies);
-        print("Checkpoints left: " + numCheckpoints);
+        print("numCheckpoints: " + numCheckpoints);
+        print("numEnemies: " + numEnemies);
 
     }
 
@@ -40,6 +42,7 @@ public class GameController : MonoBehaviour
     {
         numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
         numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        //PrintDiagnostics();
     }
 
     // Update is called once per frame

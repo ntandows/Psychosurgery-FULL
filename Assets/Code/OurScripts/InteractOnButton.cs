@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InteractOnButton : MonoBehaviour
 {
-    private GameController control;
+    public GameController control;
     private bool isHit;
 
     private void Start()
     {
         isHit = false;
-        control = gameObject.GetComponent(typeof(GameController)) as GameController;
+        //control = GetComponent<GameController>();
         control.PrintDiagnostics();
     }
 
