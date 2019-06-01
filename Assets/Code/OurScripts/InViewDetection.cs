@@ -41,7 +41,7 @@ public class InViewDetection : MonoBehaviour
 
     public static bool inView(Transform checkObject, Transform target, float checkAngle, float checkRadius)
     {
-        Collider[] overlaps = new Collider[10];
+        Collider[] overlaps = new Collider[40];
         int count = Physics.OverlapSphereNonAlloc(checkObject.position, checkRadius, overlaps);
 
         for (int i = 0; i < count + 1; i++)
