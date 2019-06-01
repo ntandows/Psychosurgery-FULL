@@ -1,13 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
     private int numCheckpoints;
     private int numEnemies;
+    private bool isDone;
+    private bool isSet;
 
 
+    public Text winText;
+    public EndGoalController endControl;
 
     /*
      * setter when checkpoint is reached
@@ -15,7 +20,7 @@ public class GameController : MonoBehaviour
     public void LessCheckpoint()
     {
         numCheckpoints--;
-        print(numCheckpoints);
+        //print(numCheckpoints);
     }
 
     /*
@@ -24,6 +29,16 @@ public class GameController : MonoBehaviour
     public void LessEnemy()
     {
         numEnemies--;
+    }
+
+    public int GetNumCheckpoints()
+    {
+        return this.numCheckpoints;
+    }
+
+    public int GetNumEnemies()
+    {
+        return this.numEnemies;
     }
 
     /*
@@ -42,21 +57,29 @@ public class GameController : MonoBehaviour
     {
         numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
         numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        isDone = false;
+        isSet = false;
         //PrintDiagnostics();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(numCheckpoints == 0 || numEnemies == 0)
+        if(!isSet && numCheckpoints == 0)
         {
-            Win();
-            return;
+            endControl.SetGoalStatus();
+            isSet = true;
         }
     }
 
-    void Win() 
-    { 
-        
+    public void hitWin()
+    {
+        isDone = true;
+        Win();
+    }
+
+    private void Win() 
+    {
+        winText.text = "You win!";
     }
 }
