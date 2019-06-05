@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
 
 
     public Text winText;
+    public Text checkpointText;
     public EndGoalController endControl;
 
     /*
@@ -20,7 +21,7 @@ public class GameController : MonoBehaviour
     public void LessCheckpoint()
     {
         numCheckpoints--;
-        //print(numCheckpoints);
+        checkpointText.text = "Checkpoints left: " + numCheckpoints;
     }
 
     /*
@@ -59,6 +60,8 @@ public class GameController : MonoBehaviour
         numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
         isDone = false;
         isSet = false;
+        winText.text = "";
+        checkpointText.text = "Checkpoints Left: " + numCheckpoints;
         //PrintDiagnostics();
     }
 
@@ -80,6 +83,6 @@ public class GameController : MonoBehaviour
 
     private void Win() 
     {
-        winText.text = "You win!";
+        winText.text = "Level complete!";
     }
 }
