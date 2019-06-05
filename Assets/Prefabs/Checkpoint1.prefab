@@ -93,12 +93,12 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6208249852492790471}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.30999997
-  m_Height: 0.62000006
+  m_Radius: 0.39295137
+  m_Height: 0.78590274
   m_Direction: 1
-  m_Center: {x: 6.217245e-16, y: 0, z: -0.25}
+  m_Center: {x: 0, y: 0, z: -0.33295152}
 --- !u!65 &8642271325763802724
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   control: {fileID: 3013061870189597422, guid: a7718dd4f6cfe44eba5b1595db22b3bb, type: 3}
+  interactText: {fileID: 8867559757719056484, guid: e69792b5ac0054bc2920e11a6a6e2c46,
+    type: 3}
 --- !u!1 &6428031747998509609
 GameObject:
   m_ObjectHideFlags: 0

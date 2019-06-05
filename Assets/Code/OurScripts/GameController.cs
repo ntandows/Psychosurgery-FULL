@@ -14,6 +14,7 @@ public class GameController : MonoBehaviour
     public Text winText;
     public Text checkpointText;
     public EndGoalController endControl;
+    public GameObject explosion;
 
     /*
      * setter when checkpoint is reached
@@ -21,7 +22,15 @@ public class GameController : MonoBehaviour
     public void LessCheckpoint()
     {
         numCheckpoints--;
-        checkpointText.text = "Checkpoints left: " + numCheckpoints;
+        if (numCheckpoints == 0)
+        {
+            checkpointText.fontSize = 18;
+            checkpointText.text = "All checkpoints hit, find the end goal!";
+        }
+        else
+        {
+            checkpointText.text = "Checkpoints left: " + numCheckpoints;
+        }
     }
 
     /*
@@ -62,7 +71,6 @@ public class GameController : MonoBehaviour
         isSet = false;
         winText.text = "";
         checkpointText.text = "Checkpoints Left: " + numCheckpoints;
-        //PrintDiagnostics();
     }
 
     // Update is called once per frame
@@ -83,6 +91,16 @@ public class GameController : MonoBehaviour
 
     private void Win() 
     {
-        winText.text = "Level complete!";
+        if (isDone)
+        {
+            var remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            for (int i = 0; i < remainingEnemies.Length; i++)
+            {
+                Instantiate(explosion, remainingEnemies[i].transform.position, remainingEnemies[i].transform.rotation);
+                Destroy(remainingEnemies[i]);
+            }
+            winText.text = "Level complete!";
+        }
+
     }
 }
