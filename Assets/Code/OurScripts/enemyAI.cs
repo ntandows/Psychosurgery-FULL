@@ -10,23 +10,37 @@ public class enemyAI : MonoBehaviour
     public Transform pos2;
     public Transform pos3;
     public Transform pos4;
+    public Transform player;
 
     private NavMeshAgent enemy;
+    private InViewDetection inViewObject;
+    private bool isPatrol;
     // Start is called before the first frame update
     void Start()
     {
         enemy = gameObject.GetComponent<NavMeshAgent>();
+        inViewObject = gameObject.GetComponent<InViewDetection>();
+        isPatrol = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        if(inViewObject.GetInView())
+        {
+            //print("In view");
+            isPatrol = false;
+            enemy.SetDestination(player.position);
+        }
+        else
+        {
+            isPatrol = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "player")
+       if (other.tag != "player" && isPatrol)
         {
             if (other.tag == "1")
             {

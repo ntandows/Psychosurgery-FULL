@@ -7,14 +7,79 @@ public class GameController : MonoBehaviour
 {
     private int numCheckpoints;
     private int numEnemies;
+    private int nextCamera;
     private bool isDone;
     private bool isSet;
-
+    private bool isMainActive;
+    private Camera mainCamera;
+    private Camera[] allCams;
 
     public Text winText;
     public Text checkpointText;
     public EndGoalController endControl;
     public GameObject explosion;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
+        numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        isDone = false;
+        isSet = false;
+        winText.text = "";
+        checkpointText.text = "Checkpoints Left: " + numCheckpoints;
+        isMainActive = true;
+        allCams = Camera.allCameras;
+        mainCamera = Camera.main;
+        foreach(Camera i in allCams)
+        {
+            i.enabled = false;
+        }
+        mainCamera.enabled = true;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!isSet && numCheckpoints == 0)
+        {
+            endControl.SetGoalStatus();
+            isSet = true;
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            if (isMainActive)
+            {
+                print("Switch Cameras");
+                SwitchRandomCameras();
+            }
+
+            else
+            {
+                print("Switch To Main");
+                SwitchToMainCamera();
+            }
+        }
+
+    }
+
+    private void SwitchRandomCameras()
+    {
+        nextCamera = Random.Range(1, allCams.Length);
+        allCams[nextCamera].enabled = true;
+        Camera.main.enabled = false;
+        isMainActive = false;
+        print(nextCamera);
+    }
+
+    private void SwitchToMainCamera()
+    {
+        allCams[nextCamera].enabled = false;
+        mainCamera.enabled = true;
+        isMainActive = true;
+    }
 
     /*
      * setter when checkpoint is reached
@@ -62,26 +127,6 @@ public class GameController : MonoBehaviour
 
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
-        numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        isDone = false;
-        isSet = false;
-        winText.text = "";
-        checkpointText.text = "Checkpoints Left: " + numCheckpoints;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(!isSet && numCheckpoints == 0)
-        {
-            endControl.SetGoalStatus();
-            isSet = true;
-        }
-    }
 
     public void hitWin()
     {

@@ -74,6 +74,19 @@ public class InViewDetection : MonoBehaviour
         return false;
     }
 
+    /*
+     * public getters and setters for inview
+     */
+    public bool GetInView()
+    {
+        return inview;
+    }
+
+    public void SetInView(bool value)
+    {
+        inview = value;
+    }
+
     private void Update()
     {
         inview = inView(transform, player, angle, radius);
