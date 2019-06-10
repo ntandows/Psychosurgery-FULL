@@ -1036,6 +1036,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.20000012
       objectReference: {fileID: 0}
+    - target: {fileID: 2432435438425341832, guid: 754aae95a8e2f4cb6be20b345e1a21a9,
+        type: 3}
+      propertyPath: cooldownText
+      value: 
+      objectReference: {fileID: 1805197859}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 754aae95a8e2f4cb6be20b345e1a21a9, type: 3}
 --- !u!114 &516816546 stripped
@@ -1044,7 +1049,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 3013061870097210602}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 769231651}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a35ae48273e8c4c28a7afa4f24d2a27a, type: 3}
@@ -1062,6 +1067,40 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 976914995842022725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &769231651 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3013061870189597417, guid: a7718dd4f6cfe44eba5b1595db22b3bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 3013061870097210602}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &769231652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769231651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5cd17ec48885462abd1adfb86f2f195, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownText: {fileID: 1805197859}
+  cooldownTime: 5
+--- !u!114 &769231653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769231651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07dbd22813b53494b8e6f1c98d30b98f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextScene:
+    m_Handle: 1
 --- !u!1 &775922662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,10 +1160,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 12
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
+    m_MinSize: 1
     m_MaxSize: 40
     m_Alignment: 0
     m_AlignByGeometry: 0
