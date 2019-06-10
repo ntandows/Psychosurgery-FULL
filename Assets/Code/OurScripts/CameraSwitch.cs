@@ -74,6 +74,11 @@ public class CameraSwitch : MonoBehaviour
                 SwitchRandomCameras();
             }
 
+            else if(!isReady && isMainActive)
+            {
+                //do nothing
+            }
+
             else
             {
                 print("Switch To Main");

@@ -60,6 +60,7 @@ public class GameController : MonoBehaviour
         else
         {
             checkpointText.text = "Checkpoints left: " + numCheckpoints;
+            print(numCheckpoints);
         }
     }
 

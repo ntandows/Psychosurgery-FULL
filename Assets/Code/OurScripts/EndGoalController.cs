@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndGoalController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EndGoalController : MonoBehaviour
     private bool isHit;
 
     public GameController control;
+    public Text interactText;
 
     // Start is called before the first frame update
     void Start()
@@ -47,10 +49,15 @@ public class EndGoalController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (isReady && Input.GetKeyDown(KeyCode.E))
+        if (isReady)
         {
-            control.hitWin();
-            isHit = true;
+            interactText.text = "Press E to finish";
+            if(Input.GetKeyDown(KeyCode.E))
+            {
+                control.hitWin();
+                isHit = true;
+            }
+
         }
     }
 }
