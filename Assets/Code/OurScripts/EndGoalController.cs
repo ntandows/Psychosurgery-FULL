@@ -21,9 +21,9 @@ public class EndGoalController : MonoBehaviour
         return isReady;
     }
 
-    public void SetGoalStatus()
+    public void SetGoalStatus(bool value)
     {
-        isReady = true;
+        isReady = value;
     }
 
     public bool GetHitStatus()
@@ -31,9 +31,9 @@ public class EndGoalController : MonoBehaviour
         return isHit;
     }
 
-    public void SetHitStatus()
+    public void SetHitStatus(bool value)
     {
-        isHit = true;
+        isHit = value;
     }
 
     // Update is called once per frame

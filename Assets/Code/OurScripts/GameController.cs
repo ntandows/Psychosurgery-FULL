@@ -5,29 +5,38 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-    private int numCheckpoints;
-    private int numEnemies;
-    private int nextCamera;
-    private bool isDone;
-    private bool isSet;
-    private bool isMainActive;
-    private Camera mainCamera;
-    private Camera[] allCams;
+    private int numCheckpoints; //number of checkpoints left
+    private int numEnemies; //number of enemies left
+    private int nextCamera; //value of randomly generated camera
+    private bool isDone; //if level is done or not
+    private bool isSet; //if the end goal is ready to be activated
+    private bool hasCameraChange; //if player has acquired ability to change cameras
+    private bool isMainActive; //if main camera is the active camera or not
+    private Camera mainCamera; //pointer to the main camera
+    private Camera[] allCams; //list of all cameras in the level
+    private GameObject tempCollectable;
+    private CameraChangeCollectable change;
 
-    public Text winText;
-    public Text checkpointText;
-    public EndGoalController endControl;
-    public GameObject explosion;
+    public Text winText; //text for win message
+    public Text checkpointText; //text for checkpoints left
+    public Text cooldownText;
+    public EndGoalController endControl; //pointer to end game controller
+    public GameObject explosion; //reference for explosion GameObject
 
     // Start is called before the first frame update
     void Start()
     {
         numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
         numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
         isDone = false;
         isSet = false;
+        hasCameraChange = false;
+
         winText.text = "";
         checkpointText.text = "Checkpoints Left: " + numCheckpoints;
+        cooldownText.text = "Camera Switch: N/A";
+
         isMainActive = true;
         allCams = Camera.allCameras;
         mainCamera = Camera.main;
@@ -36,6 +45,9 @@ public class GameController : MonoBehaviour
             i.enabled = false;
         }
         mainCamera.enabled = true;
+
+        tempCollectable = GameObject.FindGameObjectWithTag("Collectable");
+        change = tempCollectable.GetComponent<CameraChangeCollectable>();
     }
 
     // Update is called once per frame
@@ -43,13 +55,17 @@ public class GameController : MonoBehaviour
     {
         if (!isSet && numCheckpoints == 0)
         {
-            endControl.SetGoalStatus();
+            endControl.SetGoalStatus(true);
             isSet = true;
         }
 
 
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(!change.GetIsActive() && Input.GetKeyDown(KeyCode.Q))
         {
+            if(!hasCameraChange)
+            {
+                hasCameraChange = true;
+            }
             if (isMainActive)
             {
                 print("Switch Cameras");
@@ -139,6 +155,7 @@ public class GameController : MonoBehaviour
         if (isDone)
         {
             var remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+            //blows every enemy up
             for (int i = 0; i < remainingEnemies.Length; i++)
             {
                 Instantiate(explosion, remainingEnemies[i].transform.position, remainingEnemies[i].transform.rotation);

@@ -12,6 +12,7 @@ TagManager:
   - 4
   - Checkpoint
   - CanDestroy
+  - Collectable
   layers:
   - Default
   - TransparentFX
