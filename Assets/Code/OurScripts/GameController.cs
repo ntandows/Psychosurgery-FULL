@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     public Text winText; //text for win message
     public Text checkpointText; //text for checkpoints left
     public Text cooldownText;
+    public GameObject nextLevelButton;
+
     public EndGoalController endControl; //pointer to end game controller
     public GameObject explosion; //reference for explosion GameObject
     public float cooldown; //cooldown for camera switch ability
@@ -25,12 +27,19 @@ public class GameController : MonoBehaviour
         numCheckpoints = GameObject.FindGameObjectsWithTag("Checkpoint").Length;
         numEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
+        numCheckpoints = 0; //TEST STATEMENT -- DELETE LATER
+
         isDone = false;
         isSet = false;
 
         winText.text = "";
         checkpointText.text = "Checkpoints Left: " + numCheckpoints;
         cooldownText.text = "Camera Switch: N/A";
+
+        if(nextLevelButton != null)
+        {
+            nextLevelButton.SetActive(false);
+        }
 
     }
 
@@ -112,6 +121,10 @@ public class GameController : MonoBehaviour
                 Destroy(remainingEnemies[i]);
             }
             winText.text = "Level complete!";
+            if(nextLevelButton != null)
+            {
+                nextLevelButton.SetActive(true);
+            }
         }
 
     }

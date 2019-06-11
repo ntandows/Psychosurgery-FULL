@@ -5,17 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class SceneDriver : MonoBehaviour
 {
-    public Scene nextScene;
+    public string nextScene;
 
-    // Start is called before the first frame update
-    void Start()
+    public void GoToNextScene()
     {
-        //SceneManager.LoadScene("Level2");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SceneManager.LoadScene(nextScene);
     }
 }
